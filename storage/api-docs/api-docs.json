@@ -1,0 +1,146 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fridge Master",
+        "description": "The application allows you to scan and  track your products in 1 click",
+        "contact": {
+            "name": "Fridge Master",
+            "url": "http://fridgemaster.local/",
+            "email": "fridgeMaster@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://fridgemaster.local/",
+            "description": "Demo API Local server"
+        }
+    ],
+    "paths": {
+        "/user/location": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": " returns a list of locations",
+                "description": "displays the entire list of available locations with information about the presence of blocks in each",
+                "operationId": "f317cb44a8cf044f22d7c2a65421872c",
+                "responses": {
+                    "200": {
+                        "description": "list of locations"
+                    },
+                    "404": {
+                        "description": "list of locations is not defined"
+                    }
+                }
+            }
+        },
+        "/user/location/{location}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a location by ID",
+                "description": "By selecting one of the locations, the user is shown a calculator where he can enter the volume of products (in m3), the required storage temperature and storage time (no longer than 24 days).",
+                "operationId": "4fa5c14c5cd094e191a2f9d25263dd28",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "description": "Location id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "information about the location with the number of blocks available "
+                    },
+                    "404": {
+                        "description": "There is no location for the given id."
+                    }
+                }
+            }
+        },
+        "/user/calculate": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": " Calculate the required number of blocks.",
+                "description": "After pressing the “Calculate” button, the required number of blocks is displayed, based on which the storage cost and availability are calculated (there are not always enough free blocks)",
+                "operationId": "d22730f1545dfc8d4d700b4600c141ef",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/calculateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "information about the location with the number of blocks available "
+                    },
+                    "404": {
+                        "description": "There is no location for the given id."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "calculateRequest": {
+                "title": "calculate request",
+                "description": "calculate request body data",
+                "required": [
+                    "locationId"
+                ],
+                "properties": {
+                    "locationId": {
+                        "title": "locationId",
+                        "description": "id location",
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "volume": {
+                        "title": "volume",
+                        "description": "production volume",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "15"
+                    },
+                    "temperature": {
+                        "title": "temperature",
+                        "description": "product storage temperature",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "-18"
+                    },
+                    "dateTimeFrom": {
+                        "title": "dateTimeFrom",
+                        "description": "storage time from",
+                        "type": "string",
+                        "example": "17:44//03.02.2021"
+                    },
+                    "dateTimeBy": {
+                        "title": "dateTimeBy",
+                        "description": "storage time by",
+                        "type": "string",
+                        "example": "17:44//13.02.2021"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
