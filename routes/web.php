@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Http\Controllers\API\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/user/location',[HomeController::class ,'allLocation']);
+Route::get('/user/location/{location}',[HomeController::class ,'getLocation']);
+Route::post('/user/calculate',[HomeController::class ,'calculate']);
