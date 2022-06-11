@@ -88,10 +88,38 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "information about the location with the number of blocks available "
+                        "description": "number of blocks and amount"
                     },
                     "404": {
-                        "description": "There is no location for the given id."
+                        "description": "not enough blocks"
+                    }
+                }
+            }
+        },
+        "/user/bookBlocks": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": " block booking.",
+                "description": "If the user agrees with the results of the calculator, he clicks on the booking button Book blocks",
+                "operationId": "dd6eac64ecc3635cda3cc1405a774e59",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/bookblocksRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "booking confirmation and issuance of booking number"
+                    },
+                    "404": {
+                        "description": "this booking already exists"
                     }
                 }
             }
@@ -99,13 +127,89 @@
     },
     "components": {
         "schemas": {
+            "bookblocksRequest": {
+                "title": "book blocks request",
+                "description": "book blocks request body data",
+                "required": [
+                    "userId"
+                ],
+                "properties": {
+                    "userId": {
+                        "title": "userId",
+                        "description": "id user",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "locationId": {
+                        "title": "locationId",
+                        "description": "id location",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
+                    "title": {
+                        "title": "title",
+                        "description": "name city",
+                        "type": "string",
+                        "example": "Wilmington (North Carolina)"
+                    },
+                    "blocks": {
+                        "title": "blocks",
+                        "description": "number of blocks",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "10"
+                    },
+                    "days": {
+                        "title": "days",
+                        "description": "amount of days",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "10"
+                    },
+                    "dateTimeFrom": {
+                        "title": "dateTimeFrom",
+                        "description": "storage time from",
+                        "type": "string",
+                        "example": "2022-06-11 18:21:32"
+                    },
+                    "dateTimeBy": {
+                        "title": "dateTimeBy",
+                        "description": "storage time by",
+                        "type": "string",
+                        "example": "2022-06-21 18:21:32"
+                    },
+                    "temperature": {
+                        "title": "temperature",
+                        "description": "storage temperature",
+                        "type": "string",
+                        "example": "-18"
+                    },
+                    "storageCost": {
+                        "title": "storageCost",
+                        "description": "storage Cost",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1500"
+                    }
+                },
+                "type": "object"
+            },
             "calculateRequest": {
                 "title": "calculate request",
                 "description": "calculate request body data",
                 "required": [
-                    "locationId"
+                    "userId"
                 ],
                 "properties": {
+                    "userId": {
+                        "title": "userId",
+                        "description": "id user",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "1"
+                    },
                     "locationId": {
                         "title": "locationId",
                         "description": "id location",
@@ -130,13 +234,13 @@
                         "title": "dateTimeFrom",
                         "description": "storage time from",
                         "type": "string",
-                        "example": "17:44//03.02.2021"
+                        "example": "2022-06-11 18:21:32"
                     },
                     "dateTimeBy": {
                         "title": "dateTimeBy",
                         "description": "storage time by",
                         "type": "string",
-                        "example": "17:44//13.02.2021"
+                        "example": "2022-06-21 18:21:32"
                     }
                 },
                 "type": "object"
