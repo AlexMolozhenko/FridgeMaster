@@ -1,16 +1,15 @@
 <?php
 
 namespace App\Virtual;
-
 /**
  * @OA\Schema(
- *      title="calculate request",
- *      description="calculate request body data",
+ *      title="book blocks request",
+ *      description="book blocks request body data",
  *      type="object",
  *      required={"userId"}
  * )
  */
-class calculateRequest
+class bookblocksRequest
 {
     /**
      * @OA\Property(
@@ -28,37 +27,49 @@ class calculateRequest
      * @OA\Property(
      *      title="locationId",
      *      description="id location",
+     *      format="int64",
      *      example="1"
      * )
      *
-     * @var string
+     * @var integer
      */
     public $locationId;
 
     /**
      * @OA\Property(
-     *      title="volume",
-     *      description="production volume",
-     *      format="int64",
-     *      example="15"
+     *      title="title",
+     *      description="name city",
+     *      example="Wilmington (North Carolina)"
      * )
      *
-     * @var integer
+     * @var string
      */
-    public $volume;
+    public $title;
 
     /**
      * @OA\Property(
-     *      title="temperature",
-     *      description="product storage temperature",
+     *      title="blocks",
+     *      description="number of blocks",
      *      format="int64",
-     *      example="-18"
+     *      example="10"
      * )
      *
      * @var integer
      */
-    public $temperature;
+    public $blocks;
 
+    /**
+     * @OA\Property(
+     *      title="days",
+     *      description="amount of days",
+     *      format="int64",
+     *      example= "10"
+     * )
+     *
+     * @var integer
+     *
+     */
+    public $days;
 
     /**
      * @OA\Property(
@@ -84,4 +95,30 @@ class calculateRequest
      *
      */
     public $dateTimeBy;
+
+    /**
+     * @OA\Property(
+     *      title="temperature",
+     *      description="storage temperature",
+     *      example= "-18"
+     * )
+     *
+     * @var string
+     *
+     */
+    public $temperature;
+
+    /**
+     * @OA\Property(
+     *      title="storageCost",
+     *      description="storage Cost",
+     *      format="int64",
+     *      example= "1500"
+     * )
+     *
+     * @var integer
+     *
+     */
+    public $storageCost;
+
 }
