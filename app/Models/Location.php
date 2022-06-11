@@ -10,4 +10,8 @@ class Location extends Model
     use HasFactory;
 
     protected $fillable = ['title','all_blocks','remainder_blocks','timezone'];
+
+    public function bookings(){
+        return $this->hasMany(booking::class);
+    }
 }
