@@ -18,7 +18,8 @@ class CreateLocationsTable extends Migration
             $table->string('title');
             $table->integer('all_blocks');
             $table->integer('remainder_blocks');
-            $table->dateTimeTz('timezone');
+            $table->integer('blockPricePerDay');
+            $table->string('timezone');
             $table->timestamps();
         });
     }
