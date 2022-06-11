@@ -19,3 +19,4 @@ use App\Http\Controllers\API\HomeController;
 Route::get('/user/location',[HomeController::class ,'allLocation']);
 Route::get('/user/location/{location}',[HomeController::class ,'getLocation']);
 Route::post('/user/calculate',[HomeController::class ,'calculate']);
+Route::post('/user/bookBlocks',[HomeController::class ,'bookBlocks']);
