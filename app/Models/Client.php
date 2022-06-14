@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\booking;
-
-class Location extends Model
+class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','all_blocks','remainder_blocks','timezone'];
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
     public function booking(){
         return $this->hasMany(booking::class);

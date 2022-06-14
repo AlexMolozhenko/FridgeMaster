@@ -21,6 +21,34 @@
         }
     ],
     "paths": {
+        "/user": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": " returns a list of locations",
+                "description": "displays the entire list of available locations with information about the presence of blocks in each",
+                "operationId": "306e9363ce9489ee9fe7d300591b4cc0",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/clientRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "user"
+                    },
+                    "404": {
+                        "description": "User is not found"
+                    }
+                }
+            }
+        },
         "/user/location": {
             "get": {
                 "tags": [
@@ -134,38 +162,28 @@
                     "userId"
                 ],
                 "properties": {
-                    "userId": {
-                        "title": "userId",
+                    "clientId": {
+                        "title": "ClientId",
                         "description": "id user",
-                        "type": "integer",
-                        "format": "int64",
+                        "type": "string",
                         "example": "1"
                     },
                     "locationId": {
                         "title": "locationId",
                         "description": "id location",
-                        "type": "integer",
-                        "format": "int64",
-                        "example": "1"
-                    },
-                    "title": {
-                        "title": "title",
-                        "description": "name city",
                         "type": "string",
-                        "example": "Wilmington (North Carolina)"
+                        "example": "1"
                     },
                     "blocks": {
                         "title": "blocks",
                         "description": "number of blocks",
-                        "type": "integer",
-                        "format": "int64",
+                        "type": "string",
                         "example": "10"
                     },
                     "days": {
                         "title": "days",
                         "description": "amount of days",
-                        "type": "integer",
-                        "format": "int64",
+                        "type": "string",
                         "example": "10"
                     },
                     "dateTimeFrom": {
@@ -189,8 +207,7 @@
                     "storageCost": {
                         "title": "storageCost",
                         "description": "storage Cost",
-                        "type": "integer",
-                        "format": "int64",
+                        "type": "string",
                         "example": "1500"
                     }
                 },
@@ -203,8 +220,8 @@
                     "userId"
                 ],
                 "properties": {
-                    "userId": {
-                        "title": "userId",
+                    "clientId": {
+                        "title": "ClientId",
                         "description": "id user",
                         "type": "integer",
                         "format": "int64",
@@ -241,6 +258,26 @@
                         "description": "storage time by",
                         "type": "string",
                         "example": "2022-06-21 18:21:32"
+                    }
+                },
+                "type": "object"
+            },
+            "clientRequest": {
+                "title": "client request",
+                "description": "client request body data",
+                "properties": {
+                    "email": {
+                        "title": "email",
+                        "description": "email client",
+                        "type": "string",
+                        "example": "vasia@gmail.com"
+                    },
+                    "password": {
+                        "title": "password",
+                        "description": "password client",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": "12345"
                     }
                 },
                 "type": "object"

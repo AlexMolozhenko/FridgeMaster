@@ -2,16 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Client;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','location_id','title','blocks','blocks','dateTimeFrom','dateTimeBy','temperature','storageCost','accessСode'];
+    protected $fillable = ['client_id','location_id','blocks','days','dateTimeFrom','dateTimeBy','temperature','storageCost','accessСode'];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function client(){
+        return $this->belongsTo(Client::class);
     }
 
     public function location(){

@@ -14,28 +14,20 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->unsigned()->index();
+            $table->increments('id');
+            $table->integer('client_id')->unsigned()->index();
             $table->integer('location_id')->unsigned()->index();
-            $table->string('title');
             $table->integer('blocks');
             $table->integer('days');
             $table->string('dateTimeFrom');
             $table->string('dateTimeBy');
             $table->string('temperature');
             $table->decimal('storageCost');
-            $table->integer('accessСode')->index();
+            $table->integer('accessСode');
             $table->timestamps();
 
-
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-            $table->foreign('location_id')
-                ->references('id')
-                ->on('locations');
-
+                $table->foreign('client_id')->references('id')->on('clients');
+                $table->foreign('location_id')->references('id')->on('locations');
         });
     }
 

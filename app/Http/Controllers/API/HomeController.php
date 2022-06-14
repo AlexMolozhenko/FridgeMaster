@@ -3,13 +3,52 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\booking;
+use App\Models\Client;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\ApiController;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Support\Facades\DB;
 class HomeController extends ApiController
 {
+    /**
+     * @OA\Post(
+     *      path="/user",
+     *      tags={"Login"},
+     *      summary=" returns a list of locations",
+     *      description="displays the entire list of available locations with information about the presence of blocks in each",
+     *          @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/clientRequest")
+     *      ),
+     *           @OA\Response(
+     *              response="200",
+     *              description="user",
+     *
+     *           ),
+     *           @OA\Response(
+     *              response="404",
+     *              description="User is not found",
+     *
+     *           )
+     * )
+     * @return Illuminate\Http\Response;
+     */
+    public function getUser(Request $request)
+    {
+            $client = Client::where('email',$request['email'])->get();
+
+            if($client[0]['password']==$request['password']){
+                return \response()->json(['clientId'=>$client[0]['id']])->setStatusCode(200);
+            }
+
+                return \response()->json([
+                    'message'=>'Invalid password'
+                ])->setStatusCode(404);
+    }
+
     /**
      * @OA\Get(
      *      path="/user/location",
@@ -118,7 +157,6 @@ class HomeController extends ApiController
         return response()->json([
             'userId'=>$calculateRequest['userId'],
             'locationId'=>$location[0]['id'],
-            'title'=>$location[0]['title'],
             'blocks'=>$numberOfBlocks,
             'dateTimeFrom'=>$calculateRequest['dateTimeFrom'],
             'dateTimeBy'=>$calculateRequest['dateTimeBy'],
@@ -126,6 +164,14 @@ class HomeController extends ApiController
             'days'=>$days,
             'storageCost'=>$storageCost
         ])->setStatusCode(200);
+    }
+
+    public function accessCode(){
+        $code='';
+        for($i=0 ; $i < 12 ; $i++){
+            $code .=rand(0,9);
+        }
+        return $code;
     }
 
 
@@ -153,10 +199,38 @@ class HomeController extends ApiController
     public function bookBlocks(Request $request){
 
 
+
+//       booking::create([
+//            'client_id'=> $request['clientId'],
+//            'location_id'=> $request['locationId'],
+//            'blocks'=> $request['blocks'],
+//            'days'=> $request['days'],
+//            'dateTimeFrom'=> $request['dateTimeFrom'],
+//            'dateTimeBy'=> $request['dateTimeBy'],
+//            'temperature'=> $request['temperature'],
+//            'storageCost'=> $request['storageCost'],
+//            'accessСode'=> $this->accessCode()
+//        ]);
+
+//        DB::table('bookings')->insert([
+//            'client_id'=> $request['clientId'],
+//            'location_id'=>$request['locationId'],
+//            'blocks'=>$request['blocks'],
+//            'days'=>$request['days'],
+//            'dateTimeFrom'=>$request['dateTimeFrom'],
+//            'dateTimeBy'=>$request['dateTimeBy'],
+//            'temperature'=>$request['temperature'],
+//            'storageCost'=>$request['storageCost'],
+//            'accessСode'=> $this->accessCode()
+//        ]);
+
+        $booking= new booking();
+        $booking->fill($request->all());
+        $booking->save();
         return response()->json([
-            'massage'=>'ok',
-            'data'=>$request->all()
-        ])->setStatusCode(200);
+            'massage'=>'saving a booking',
+            'all'=>$this->accessCode()
+       ])->setStatusCode(200);
     }
 
 }

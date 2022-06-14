@@ -14,8 +14,7 @@ use App\Http\Controllers\API\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::post('/user',[HomeController::class ,'getUser']);
 Route::get('/user/location',[HomeController::class ,'allLocation']);
 Route::get('/user/location/{location}',[HomeController::class ,'getLocation']);
 Route::post('/user/calculate',[HomeController::class ,'calculate']);

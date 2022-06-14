@@ -14,7 +14,7 @@ class calculateRequest
 {
     /**
      * @OA\Property(
-     *      title="userId",
+     *      title="ClientId",
      *      description="id user",
      *      format="int64",
      *      example="1"
@@ -22,7 +22,7 @@ class calculateRequest
      *
      * @var integer
      */
-    public $userId;
+    public $clientId;
 
     /**
      * @OA\Property(

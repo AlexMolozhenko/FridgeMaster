@@ -6,55 +6,40 @@ namespace App\Virtual;
  *      title="book blocks request",
  *      description="book blocks request body data",
  *      type="object",
- *      required={"userId"}
+ *      required={"clientId"}
  * )
  */
 class bookblocksRequest
 {
     /**
      * @OA\Property(
-     *      title="userId",
-     *      description="id user",
-     *      format="int64",
+     *      title="clientId",
+     *      description="id client",
      *      example="1"
      * )
      *
-     * @var integer
+     * @var string
      */
-    public $userId;
+    public $clientId;
 
     /**
      * @OA\Property(
      *      title="locationId",
      *      description="id location",
-     *      format="int64",
      *      example="1"
      * )
-     *
-     * @var integer
+     * @var string
      */
     public $locationId;
 
-    /**
-     * @OA\Property(
-     *      title="title",
-     *      description="name city",
-     *      example="Wilmington (North Carolina)"
-     * )
-     *
-     * @var string
-     */
-    public $title;
 
     /**
      * @OA\Property(
      *      title="blocks",
      *      description="number of blocks",
-     *      format="int64",
      *      example="10"
      * )
-     *
-     * @var integer
+     * @var string
      */
     public $blocks;
 
@@ -62,11 +47,10 @@ class bookblocksRequest
      * @OA\Property(
      *      title="days",
      *      description="amount of days",
-     *      format="int64",
      *      example= "10"
      * )
      *
-     * @var integer
+     * @var string
      *
      */
     public $days;
@@ -75,7 +59,7 @@ class bookblocksRequest
      * @OA\Property(
      *      title="dateTimeFrom",
      *      description="storage time from",
-     *      example= "2022-06-11 18:21:32"
+     *      example="2022-06-11 18:21:32"
      * )
      *
      * @var string
@@ -112,13 +96,11 @@ class bookblocksRequest
      * @OA\Property(
      *      title="storageCost",
      *      description="storage Cost",
-     *      format="int64",
      *      example= "1500"
      * )
      *
-     * @var integer
+     * @var string
      *
      */
     public $storageCost;
-
 }
