@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\booking;
+use App\Models\Booking;
 class Client extends Model
 {
     use HasFactory;
@@ -15,7 +15,7 @@ class Client extends Model
         'password',
     ];
 
-    public function booking(){
-        return $this->hasMany(booking::class);
+    public function bookings(){
+        return $this->hasMany(Booking::class);
     }
 }

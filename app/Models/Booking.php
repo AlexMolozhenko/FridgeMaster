@@ -7,17 +7,20 @@ use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class booking extends Model
+class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['client_id','location_id','blocks','days','dateTimeFrom','dateTimeBy','temperature','storageCost','accessСode'];
+
+    protected $fillable = ['client_id','blocks','days','dateTimeFrom','dateTimeBy','temperature','storageCost','accessСode',];
+
+//    protected $guarded = [];
 
     public function client(){
         return $this->belongsTo(Client::class);
     }
 
     public function location(){
-        return $this->belongsTo(Location::class);
+        return $this->belongsTomany(Location::class);
     }
 
 }
