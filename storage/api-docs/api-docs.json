@@ -21,10 +21,66 @@
         }
     ],
     "paths": {
+        "/user/calculate": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": " Calculate the required number of blocks.",
+                "description": "After pressing the “Calculate” button, the required number of blocks is displayed, based on which the storage cost and availability are calculated (there are not always enough free blocks)",
+                "operationId": "fa984a12707999a46e969c7216a9648c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/calculateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "number of blocks and amount"
+                    },
+                    "404": {
+                        "description": "not enough blocks"
+                    }
+                }
+            }
+        },
+        "/user/bookBlocks": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": " block booking.",
+                "description": "If the user agrees with the results of the calculator, he clicks on the booking button Book blocks",
+                "operationId": "3576738e62c678a215c2697fa09d9d6c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/bookblocksRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "booking confirmation and issuance of booking number"
+                    },
+                    "404": {
+                        "description": "this booking already exists"
+                    }
+                }
+            }
+        },
         "/user": {
             "post": {
                 "tags": [
-                    "Login"
+                    "Auth"
                 ],
                 "summary": " returns a list of locations",
                 "description": "displays the entire list of available locations with information about the presence of blocks in each",
@@ -56,7 +112,7 @@
                 ],
                 "summary": " returns a list of locations",
                 "description": "displays the entire list of available locations with information about the presence of blocks in each",
-                "operationId": "f317cb44a8cf044f22d7c2a65421872c",
+                "operationId": "9d990bb7f115d2814d5ca79314fee4ea",
                 "responses": {
                     "200": {
                         "description": "list of locations"
@@ -74,7 +130,7 @@
                 ],
                 "summary": "Get a location by ID",
                 "description": "By selecting one of the locations, the user is shown a calculator where he can enter the volume of products (in m3), the required storage temperature and storage time (no longer than 24 days).",
-                "operationId": "4fa5c14c5cd094e191a2f9d25263dd28",
+                "operationId": "6a866b4ecb0be790becff5a9c23678c4",
                 "parameters": [
                     {
                         "name": "location",
@@ -95,62 +151,6 @@
                     }
                 }
             }
-        },
-        "/user/calculate": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": " Calculate the required number of blocks.",
-                "description": "After pressing the “Calculate” button, the required number of blocks is displayed, based on which the storage cost and availability are calculated (there are not always enough free blocks)",
-                "operationId": "d22730f1545dfc8d4d700b4600c141ef",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/calculateRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "number of blocks and amount"
-                    },
-                    "404": {
-                        "description": "not enough blocks"
-                    }
-                }
-            }
-        },
-        "/user/bookBlocks": {
-            "post": {
-                "tags": [
-                    "User"
-                ],
-                "summary": " block booking.",
-                "description": "If the user agrees with the results of the calculator, he clicks on the booking button Book blocks",
-                "operationId": "dd6eac64ecc3635cda3cc1405a774e59",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/bookblocksRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "booking confirmation and issuance of booking number"
-                    },
-                    "404": {
-                        "description": "this booking already exists"
-                    }
-                }
-            }
         }
     },
     "components": {
@@ -159,12 +159,12 @@
                 "title": "book blocks request",
                 "description": "book blocks request body data",
                 "required": [
-                    "userId"
+                    "clientId"
                 ],
                 "properties": {
                     "clientId": {
-                        "title": "ClientId",
-                        "description": "id user",
+                        "title": "clientId",
+                        "description": "id client",
                         "type": "string",
                         "example": "1"
                     },
