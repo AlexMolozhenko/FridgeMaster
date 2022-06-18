@@ -24,7 +24,7 @@
         "/user/calculate": {
             "post": {
                 "tags": [
-                    "User"
+                    "Booking"
                 ],
                 "summary": " Calculate the required number of blocks.",
                 "description": "After pressing the “Calculate” button, the required number of blocks is displayed, based on which the storage cost and availability are calculated (there are not always enough free blocks)",
@@ -52,7 +52,7 @@
         "/user/bookBlocks": {
             "post": {
                 "tags": [
-                    "User"
+                    "Booking"
                 ],
                 "summary": " block booking.",
                 "description": "If the user agrees with the results of the calculator, he clicks on the booking button Book blocks",
@@ -82,8 +82,7 @@
                 "tags": [
                     "Auth"
                 ],
-                "summary": " returns a list of locations",
-                "description": "displays the entire list of available locations with information about the presence of blocks in each",
+                "summary": " returns a clientid",
                 "operationId": "306e9363ce9489ee9fe7d300591b4cc0",
                 "requestBody": {
                     "required": true,
@@ -108,7 +107,7 @@
         "/user/location": {
             "get": {
                 "tags": [
-                    "User"
+                    "Location"
                 ],
                 "summary": " returns a list of locations",
                 "description": "displays the entire list of available locations with information about the presence of blocks in each",
@@ -126,7 +125,7 @@
         "/user/location/{location}": {
             "get": {
                 "tags": [
-                    "User"
+                    "Location"
                 ],
                 "summary": "Get a location by ID",
                 "description": "By selecting one of the locations, the user is shown a calculator where he can enter the volume of products (in m3), the required storage temperature and storage time (no longer than 24 days).",
