@@ -17,7 +17,7 @@ class LocationController extends ApiController
     /**
      * @OA\Get(
      *      path="/user/location",
-     *      tags={"User"},
+     *      tags={"Location"},
      *      summary=" returns a list of locations",
      *      description="displays the entire list of available locations with information about the presence of blocks in each",
      *           @OA\Response(
@@ -43,7 +43,7 @@ class LocationController extends ApiController
     /**
      * @OA\Get(
      *     path="/user/location/{location}",
-     *     tags={"User"},
+     *     tags={"Location"},
      *     summary="Get a location by ID",
      *     description="By selecting one of the locations, the user is shown a calculator where he can enter the volume of products (in m3), the required storage temperature and storage time (no longer than 24 days).",
      *     @OA\Parameter(

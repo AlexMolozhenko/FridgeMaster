@@ -18,7 +18,7 @@ class BookingController extends ApiController
     /**
      * @OA\Post (
      *     path="/user/calculate",
-     *     tags={"User"},
+     *     tags={"Booking"},
      *     summary=" Calculate the required number of blocks.",
      *     description="After pressing the “Calculate” button, the required number of blocks is displayed, based on which the storage cost and availability are calculated (there are not always enough free blocks)",
      *      @OA\RequestBody(
@@ -93,7 +93,7 @@ class BookingController extends ApiController
     /**
      *  @OA\Post (
      *     path="/user/bookBlocks",
-     *     tags={"User"},
+     *     tags={"Booking"},
      *     summary=" block booking.",
      *     description="If the user agrees with the results of the calculator, he clicks on the booking button Book blocks",
      *      @OA\RequestBody(
@@ -140,7 +140,4 @@ class BookingController extends ApiController
         ])->setStatusCode(200);
     }
 
-    public function allBookings(){
-
-    }
 }

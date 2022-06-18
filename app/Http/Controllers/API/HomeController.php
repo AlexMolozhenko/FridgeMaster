@@ -17,8 +17,8 @@ class HomeController extends ApiController
      * @OA\Post(
      *      path="/user",
      *      tags={"Auth"},
-     *      summary=" returns a list of locations",
-     *      description="displays the entire list of available locations with information about the presence of blocks in each",
+     *      summary=" returns a clientid",
+     *
      *          @OA\RequestBody(
      *          required=true,
      *          @OA\JsonContent(ref="#/components/schemas/clientRequest")
