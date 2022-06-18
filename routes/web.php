@@ -25,3 +25,7 @@ Route::get('/user/location/{location}',[LocationController::class ,'getLocation'
 Route::post('/user/calculate',[BookingController::class ,'calculate']);
 
 Route::post('/user/bookBlocks',[BookingController::class ,'bookBlocks']);
+
+Route::get('/user/myBookings',[BookingController::class ,'allBookings']);
+
+Route::get('/user/myBookings/{bookingId}',[BookingController::class ,'book']);
