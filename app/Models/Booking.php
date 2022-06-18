@@ -20,7 +20,7 @@ class Booking extends Model
     }
 
     public function location(){
-        return $this->belongsTomany(Location::class);
+        return $this->belongsTomany(Location::class,'locations_bookings');
     }
 
 }
